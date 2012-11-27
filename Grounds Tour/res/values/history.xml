@@ -1,0 +1,14 @@
+<resources>
+    <string name="Rotunda">The Rotunda at the University of Virginia was designed by Thomas Jefferson as the architectural and academic heart of his community of scholars, or what he termed the \"academical village\".</string>
+    <string name="Chemistry">This is the Chemistry Building.</string>
+    <string name="Clark_Hall">This is Clark Hall.</string>
+    <string name="OHill">This is Ohill.</string>
+    <string name="AFC_Clock">This is a clock tower near the stadium and AFC. </string>
+    <string name="Rice_Hall">This is Rice Hall. Where CS majors live. </string>
+    <string name="Nau_Hall">This is Nau Hall. There\'s a Starbucks here. </string>
+    <string name="Homer">This is the Homer Statue whose butt drunk people kiss. </string>
+    <string name="Chapel">This is the Chapel. People get married here. </string>
+
+
+
+</resources>

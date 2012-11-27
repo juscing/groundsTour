@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="Rotunda">
+        <item >38035687</item>
+        <item >-78503313</item>
+    </integer-array>
+    <integer-array name="Clark_Hall">
+        <item >38033494</item>
+        <item >-78507604</item>
+    </integer-array>
+    <integer-array name="Chemistry">
+        <item >38033663</item>
+        <item >-78511644</item>
+    </integer-array>
+    <integer-array name="OHill">
+        <item >38034897</item>
+        <item >-78515168</item>
+    </integer-array>
+    <integer-array name="AFC_Clock">
+        <item >38032597</item>
+        <item >-78514442</item>
+    </integer-array>
+    <integer-array name="Rice_Hall">
+        <item >38031642</item>
+        <item >-78510803</item>
+    </integer-array>
+    <integer-array name="Nau_Hall">
+        <item >38031791</item>
+        <item >-78504970</item>
+    </integer-array>
+    <integer-array name="Homer">
+        <item >38033258</item>
+        <item >-78504675</item>
+    </integer-array>
+    <integer-array name="Chapel">
+        <item >38036257</item>
+        <item >-78504431</item>
+    </integer-array>
+    
+</resources>

@@ -1,0 +1,25 @@
+<resources>
+
+    <string name="app_name">Grounds Tour</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">UVA Grounds Tour</string>
+    <string name="intro_text">Grounds Tour Tech Demo</string>
+    <string name="lat_label">Latitude:</string>
+    <string name="long_label">Longitude:</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="GotoMap">Go To Map</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="title_activity_main_screen">MainScreen</string>
+    <string name="History">History</string>
+    <string name="next_stop">Next Stop:</string>
+    <string name="title_activity_choice">Choice</string>
+    <string name="use_mock">Pick a mock location.</string>
+    <string name="send_mock">Use mock location.</string>
+    <string name="use_normal">Use the standard location.</string>
+    <string name="title_activity_mock_coor">Set Mock Coordinates</string>
+    <string name="enter_lat">Enter mock latitude.</string>
+    <string name="enter_lon">Enter mock longitude.</string>
+    <string name="title_activity_mock">MockActivity</string>
+
+</resources>

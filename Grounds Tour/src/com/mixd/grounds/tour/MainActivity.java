@@ -62,6 +62,9 @@ public class MainActivity extends Activity implements LocationListener
 			latitudeField.setText("Location not available");
 			longitudeField.setText("Location not available");
 		}
+		
+		
+		
 	}
 
 	/* Request updates at startup */
@@ -70,7 +73,7 @@ public class MainActivity extends Activity implements LocationListener
 	{
 		super.onResume();
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-				400, 1, this);
+				1000, 1, this);
 	}
 
 	/* Remove the locationlistener updates when Activity is paused */

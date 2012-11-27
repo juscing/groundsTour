@@ -28,4 +28,10 @@ public class SplashScreen extends Activity
         }, 5000);
 	}
 
+	@Override
+	public void onBackPressed(){
+		System.exit(0);
+		finish();
+	}
+	
 }

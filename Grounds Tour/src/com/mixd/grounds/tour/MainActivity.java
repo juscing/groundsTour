@@ -39,15 +39,9 @@ public class MainActivity extends Activity implements LocationListener
 	    
 		// default
 		Criteria criteria = new Criteria();
-		// criteria.setAccuracy(Criteria.ACCURACY_FINE);
+
 		provider = locationManager.getBestProvider(criteria, false);
-		// String defaultAndroidSDK = "google_sdk";
-		// if (android.os.Build.MODEL.equals(defaultAndroidSDK)) {
-		// locationManager.setTestProviderEnabled("gps", true);
-		// Location cville = new Location(provider);
-		// cville.setLatitude(38.029028);
-		// cville.setLongitude(-78.478088);
-		// locationManager.setTestProviderLocation(provider, cville );
+
 		// }
 		Location location = locationManager.getLastKnownLocation(provider);
 		// Initialize the location fields

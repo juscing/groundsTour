@@ -49,7 +49,7 @@ public class MainActivity extends Activity implements LocationListener
 		// cville.setLongitude(-78.478088);
 		// locationManager.setTestProviderLocation(provider, cville );
 		// }
-		Location location = locationManager.getLastKnownLocation("gps");
+		Location location = locationManager.getLastKnownLocation(provider);
 		// Initialize the location fields
 		if (location != null)
 		{

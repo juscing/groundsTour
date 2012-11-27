@@ -13,7 +13,6 @@ import android.widget.EditText;
 
 public class MockCoor extends Activity
 {
-    private LocationManager locationManager;
 	public final static String LATITUDE = "lat";
 	public final static String LONGITUDE = "lon";
 
@@ -34,12 +33,6 @@ public class MockCoor extends Activity
 		{
 			double lat = Double.parseDouble(editText1.getText().toString());
 			double lon = Double.parseDouble(editText2.getText().toString());
-			
-			Location mockLocation = new Location(LocationManager.GPS_PROVIDER);
-			mockLocation.setLatitude(lat);
-			mockLocation.setLongitude(lon);
-			locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-			
 			
 			Intent mockIntent = new Intent(this, MockActivity.class);
 			mockIntent.putExtra(LATITUDE, lat);

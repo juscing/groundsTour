@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
@@ -38,6 +41,9 @@ public class MapsActivity extends MapActivity
 		Intent intent = getIntent();
 
 		MapView mapView = (MapView) findViewById(R.id.mapview);
+		mapView.setSatellite(false);
+		mapView.invalidate();
+
 		mapView.setBuiltInZoomControls(true);
 		MapController mc = mapView.getController();
 		MyLocationOverlay myLocationOverlay = new MyLocationOverlay(this,
@@ -137,6 +143,35 @@ public class MapsActivity extends MapActivity
 
 		mapOverlays.add(itemizedoverlay);
 
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.activity_maps, menu);
+
+		return true;
+
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		MapView mapView = (MapView) findViewById(R.id.mapview);
+		switch (item.getItemId())
+		{
+		case R.id.satellite_setting:
+			mapView.setSatellite(true);
+			mapView.invalidate();
+			return true;
+
+		case R.id.roadmap_setting:
+			mapView.setSatellite(false);
+			mapView.invalidate();
+			return true;
+		}
+		return false;
 	}
 
 }

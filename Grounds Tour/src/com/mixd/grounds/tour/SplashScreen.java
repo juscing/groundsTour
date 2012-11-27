@@ -25,7 +25,7 @@ public class SplashScreen extends Activity
                 startActivity(mainIntent);
                 finish();
             }
-        }, 5000);
+        }, 3000);
 	}
 
 	@Override

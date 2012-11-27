@@ -41,6 +41,8 @@ public final class R {
         public static final int imageView1=0x7f09000b;
         public static final int mapview=0x7f090008;
         public static final int menu_settings=0x7f09000c;
+        public static final int roadmap_setting=0x7f09000e;
+        public static final int satellite_setting=0x7f09000d;
         public static final int textView1=0x7f090006;
         public static final int textView2=0x7f090002;
         public static final int textView3=0x7f090004;
@@ -88,6 +90,8 @@ public final class R {
         public static final int menu_settings=0x7f06000b;
         public static final int next_stop=0x7f060015;
         public static final int send_mock=0x7f060018;
+        public static final int set_roadmap=0x7f06001f;
+        public static final int set_satellite=0x7f06001e;
         public static final int title_activity_choice=0x7f060016;
         public static final int title_activity_main=0x7f06000c;
         public static final int title_activity_main_screen=0x7f060013;

@@ -21,5 +21,8 @@
     <string name="enter_lat">Enter mock latitude.</string>
     <string name="enter_lon">Enter mock longitude.</string>
     <string name="title_activity_mock">MockActivity</string>
+    <string name="set_satellite">Satellite</string>
+    <string name="set_roadmap">Roadmap</string>
+   
 
 </resources>

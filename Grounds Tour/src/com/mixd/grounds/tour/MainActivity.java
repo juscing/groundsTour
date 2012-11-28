@@ -10,12 +10,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Matrix;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +37,12 @@ public class MainActivity extends Activity implements LocationListener
 	private ArrayList<Object> nextStop;
 	public final static String LATITUDE = "lat";
 	public final static String LONGITUDE = "lon";
+
 	GeoPoint cville = new GeoPoint(38035687, -78503313);
+
+	private ImageView arrow;
+
+	// private double prevBear;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -163,6 +171,9 @@ public class MainActivity extends Activity implements LocationListener
 			nextStop.add((double) finalDest.getLatitudeE6() / 1000000);
 			nextStop.add((double) finalDest.getLongitudeE6() / 1000000);
 			nextStop.add(myStopName);
+			// prevBear = 0;
+			Matrix arrowMatrix = new Matrix();
+			arrow = (ImageView) findViewById(R.id.imageView1);
 
 			onLocationChanged(location);
 		}
@@ -203,6 +214,7 @@ public class MainActivity extends Activity implements LocationListener
 
 		ArrayList<Object> newArray = Helper.getCurrentStop(lat, lon, nextStop,
 				this);
+
 		int newInt = 0;
 		int thisInt = 0;
 		if (newArray.get(0) instanceof Integer)
@@ -216,8 +228,9 @@ public class MainActivity extends Activity implements LocationListener
 		}
 
 		if (newInt != thisInt)
-		{		
-			if(newInt != firstStop){
+		{
+			if (newInt != firstStop)
+			{
 				nextStop = (ArrayList<Object>) newArray.clone();
 				stopField.setText(String.valueOf(nextStop.get(3)));
 				AlertDialog ad = new AlertDialog.Builder(this).create();
@@ -232,7 +245,9 @@ public class MainActivity extends Activity implements LocationListener
 					}
 				});
 				ad.show();
-			} else {
+			}
+			else
+			{
 				AlertDialog ad = new AlertDialog.Builder(this).create();
 				ad.setCancelable(false); // This blocks the 'BACK' button
 				ad.setMessage("You've finished the tour!");
@@ -245,14 +260,20 @@ public class MainActivity extends Activity implements LocationListener
 					}
 				});
 				ad.show();
-				
+
 				stopField.setText("You're done!");
 			}
-			
-		}
-		
-		
 
+			float bearingToStop = (float) Helper.latLngBearingDeg(
+					location.getLatitude(), location.getLongitude(),
+					(Double) nextStop.get(1), (Double) nextStop.get(2));
+			float myBearing = location.getBearing();
+			Matrix arrowMatrix = new Matrix();
+			arrow.setScaleType(ScaleType.MATRIX); // required
+			arrowMatrix.postRotate((bearingToStop - myBearing), 37 / 2, 25);
+			arrow.setImageMatrix(arrowMatrix);
+			// Not needed prevBear = bearingToStop;
+		}
 	}
 
 	@Override
@@ -298,9 +319,10 @@ public class MainActivity extends Activity implements LocationListener
 			startActivity(mapIntent);
 		}
 	}
-	
+
 	@Override
-	public void onConfigurationChanged(Configuration newConfig){
+	public void onConfigurationChanged(Configuration newConfig)
+	{
 		super.onConfigurationChanged(newConfig);
 	}
 }

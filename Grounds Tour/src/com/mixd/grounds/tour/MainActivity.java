@@ -37,7 +37,7 @@ public class MainActivity extends Activity implements LocationListener
 	private ArrayList<Object> nextStop;
 	public final static String LATITUDE = "lat";
 	public final static String LONGITUDE = "lon";
-
+	//Test new branch commit
 	GeoPoint cville = new GeoPoint(38035687, -78503313);
 
 	private ImageView arrow;

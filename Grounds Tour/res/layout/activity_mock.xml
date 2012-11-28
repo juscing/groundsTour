@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView2"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="150dp"
         android:onClick="mapIntent"
         android:text="@string/GotoMap" />
 
@@ -79,6 +79,14 @@
         android:text="TextView"
         android:textColor="@color/white" />
 
-    
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="75dp"
+        android:text="@string/nextcoor" 
+        android:onClick="nextCoor"/>
 
 </RelativeLayout>

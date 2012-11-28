@@ -2,8 +2,8 @@ package com.mixd.grounds.tour;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
-import com.google.android.maps.GeoPoint;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,8 +11,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
+
+import com.google.android.maps.GeoPoint;
 
 public class MockActivity extends Activity
 {
@@ -26,6 +29,84 @@ public class MockActivity extends Activity
 	public static Activity activity;
 	private double latitude;
 	private double longitude;
+
+	private GeoPoint finalDest;
+	private int stopNum;
+	
+	TimerTask task;
+	final Handler handler = new Handler();
+	Timer timer;
+	
+	
+	
+	public void check()
+	{
+		task = new TimerTask()
+		{
+			public void run()
+			{
+				handler.post(new Runnable()
+				{
+					public void run()
+					{
+						ArrayList<Object> array = Helper.getMockStop(stopNum, latitude,
+								longitude, (double) finalDest.getLatitudeE6() / 1000000,
+								(double) finalDest.getLongitudeE6() / 1000000, MockActivity.activity);
+
+						if (array != null)
+						{
+							int nextNum = 0;
+							if (array.get(0) instanceof Integer)
+							{
+								nextNum = (Integer) array.get(0);
+								System.out.println("Numyay!");
+							}
+							if (nextNum != stopNum)
+							{
+								stopNum = nextNum;
+								stopField.setText(String.valueOf(array.get(3)));
+								int latTo = 0;
+								int lonTo = 0;
+								System.out.println(array.get(1));
+								if (array.get(1) instanceof Integer)
+								{									
+									latTo = (Integer) array.get(1);
+									
+									
+									System.out.println("latYay!"); 
+											
+								}
+								if(array.get(2) instanceof Integer){
+									lonTo = (Integer) array.get(2);
+								}
+								
+								finalDest = new GeoPoint(latTo, lonTo);
+								
+								
+								AlertDialog ad = new AlertDialog.Builder(MockActivity.activity).create();
+								ad.setCancelable(false); // This blocks the 'BACK' button
+								ad.setMessage("You've arrived at the stop!");
+								ad.setButton("OK", new DialogInterface.OnClickListener()
+								{
+									@Override
+									public void onClick(DialogInterface dialog, int which)
+									{
+										dialog.dismiss();
+									}
+								});
+								ad.show();
+							}
+						}
+					}
+				});
+			}
+		};
+
+		timer = new Timer();
+
+		timer.schedule(task, 300, 1000);
+
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -46,11 +127,9 @@ public class MockActivity extends Activity
 		latitudeField.setText(String.valueOf(df.format(latitude)));
 		longitudeField.setText(String.valueOf(df.format(longitude)));
 
-		GeoPoint finalDest = null;
+		finalDest = null;
 		Resources res = getResources();
-		int stopNum = 0;
 		String stopName = "";
-		String myStopName = "";
 
 		for (int i = 0; i < 9; i++)
 		{
@@ -130,39 +209,8 @@ public class MockActivity extends Activity
 					finalDest = new GeoPoint(currentDest.getLatitudeE6(),
 							currentDest.getLongitudeE6());
 					stopNum = i;
-					myStopName = stopName;
 					stopField.setText(stopName);
 				}
-			}
-		}
-
-		ArrayList<Object> array = Helper.getMockStop(stopNum, latitude,
-				longitude, (double) finalDest.getLatitudeE6() / 1000000,
-				(double) finalDest.getLongitudeE6() / 1000000, this);
-
-		if (array != null)
-		{
-
-			int nextNum = 0;
-			if (array.get(0) instanceof Integer)
-			{
-				nextNum = (Integer) array.get(0);
-			}
-			if (nextNum != stopNum)
-			{
-
-				AlertDialog ad = new AlertDialog.Builder(this).create();
-				ad.setCancelable(false); // This blocks the 'BACK' button
-				ad.setMessage("You've arrived at the stop!");
-				ad.setButton("OK", new DialogInterface.OnClickListener()
-				{
-					@Override
-					public void onClick(DialogInterface dialog, int which)
-					{
-						dialog.dismiss();
-					}
-				});
-				ad.show();
 			}
 		}
 	}
@@ -171,6 +219,7 @@ public class MockActivity extends Activity
 	public void onBackPressed()
 	{
 		activity = null;
+		timer.cancel();
 		super.onBackPressed();
 	}
 
@@ -180,5 +229,20 @@ public class MockActivity extends Activity
 		mapIntent.putExtra(LATITUDE, latitude);
 		mapIntent.putExtra(LONGITUDE, longitude);
 		startActivity(mapIntent);
+	}
+	
+	public void nextCoor(View view){
+		onBackPressed();
+	}
+	
+	@Override
+	public void onResume(){
+		check();
+		super.onResume();
+	}
+	
+	public void onPause(){
+		timer.cancel();
+		super.onResume();
 	}
 }

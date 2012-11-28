@@ -38,7 +38,7 @@ public class MockCoor extends Activity
 			Intent mockIntent = new Intent(this, MockActivity.class);
 			mockIntent.putExtra(LATITUDE, lat);
 			mockIntent.putExtra(LONGITUDE, lon);
-			startActivity(mockIntent);
+			startActivityForResult(mockIntent,1);
 		}
 		catch (NumberFormatException e)
 		{
@@ -55,5 +55,4 @@ public class MockCoor extends Activity
 		}
 
 	}
-
 }

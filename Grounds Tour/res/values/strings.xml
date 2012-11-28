@@ -23,6 +23,6 @@
     <string name="title_activity_mock">MockActivity</string>
     <string name="set_satellite">Satellite</string>
     <string name="set_roadmap">Roadmap</string>
-   
+    <string name="nextcoor">Enter Next Coordinate</string>
 
 </resources>

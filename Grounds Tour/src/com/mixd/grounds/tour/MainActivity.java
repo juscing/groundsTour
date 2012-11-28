@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.location.Criteria;
 import android.location.Location;
@@ -33,6 +34,7 @@ public class MainActivity extends Activity implements LocationListener
 	private ArrayList<Object> nextStop;
 	public final static String LATITUDE = "lat";
 	public final static String LONGITUDE = "lon";
+	GeoPoint cville = new GeoPoint(38035687, -78503313);
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -60,7 +62,6 @@ public class MainActivity extends Activity implements LocationListener
 		{
 			this.location = location;
 			System.out.println("Provider " + provider + " has been selected.");
-			
 
 			GeoPoint finalDest = null;
 			Resources res = getResources();
@@ -143,7 +144,6 @@ public class MainActivity extends Activity implements LocationListener
 							(double) finalDest.getLatitudeE6() / 1000000,
 							(double) finalDest.getLongitudeE6() / 1000000);
 
-					
 					if (distanceC < distanceF)
 					{
 
@@ -157,13 +157,13 @@ public class MainActivity extends Activity implements LocationListener
 			}
 
 			firstStop = stopNum;
-			
+
 			nextStop = new ArrayList<Object>();
 			nextStop.add(stopNum);
-			nextStop.add((double)finalDest.getLatitudeE6()/1000000);
-			nextStop.add((double)finalDest.getLongitudeE6()/1000000);
+			nextStop.add((double) finalDest.getLatitudeE6() / 1000000);
+			nextStop.add((double) finalDest.getLongitudeE6() / 1000000);
 			nextStop.add(myStopName);
-			
+
 			onLocationChanged(location);
 		}
 		else
@@ -200,34 +200,59 @@ public class MainActivity extends Activity implements LocationListener
 		double lon = (location.getLongitude());
 		latitudeField.setText(String.valueOf(df.format(lat)));
 		longitudeField.setText(String.valueOf(df.format(lon)));
-		
-		ArrayList<Object> newArray = Helper.getCurrentStop(lat, lon, nextStop, this);
-		int newInt = 0; 
+
+		ArrayList<Object> newArray = Helper.getCurrentStop(lat, lon, nextStop,
+				this);
+		int newInt = 0;
 		int thisInt = 0;
-		if (newArray.get(0) instanceof Integer){
+		if (newArray.get(0) instanceof Integer)
+		{
 			newInt = (Integer) newArray.get(0);
 		}
-		
-		if (nextStop.get(0) instanceof Integer){
+
+		if (nextStop.get(0) instanceof Integer)
+		{
 			thisInt = (Integer) nextStop.get(0);
 		}
+
+		if (newInt != thisInt)
+		{		
+			if(newInt != firstStop){
+				nextStop = (ArrayList<Object>) newArray.clone();
+				stopField.setText(String.valueOf(nextStop.get(3)));
+				AlertDialog ad = new AlertDialog.Builder(this).create();
+				ad.setCancelable(false); // This blocks the 'BACK' button
+				ad.setMessage("You've arrived at the stop!");
+				ad.setButton("OK", new DialogInterface.OnClickListener()
+				{
+					@Override
+					public void onClick(DialogInterface dialog, int which)
+					{
+						dialog.dismiss();
+					}
+				});
+				ad.show();
+			} else {
+				AlertDialog ad = new AlertDialog.Builder(this).create();
+				ad.setCancelable(false); // This blocks the 'BACK' button
+				ad.setMessage("You've finished the tour!");
+				ad.setButton("OK", new DialogInterface.OnClickListener()
+				{
+					@Override
+					public void onClick(DialogInterface dialog, int which)
+					{
+						dialog.dismiss();
+					}
+				});
+				ad.show();
+				
+				stopField.setText("You're done!");
+			}
 			
-		if (newInt != thisInt){
-			
-			nextStop = (ArrayList<Object>) newArray.clone();
-			
-			AlertDialog ad = new AlertDialog.Builder(this).create();  
-			ad.setCancelable(false); // This blocks the 'BACK' button  
-			ad.setMessage("You've arrived at the stop!");  
-			ad.setButton("OK", new DialogInterface.OnClickListener() {  
-			    @Override  
-			    public void onClick(DialogInterface dialog, int which) {  
-			        dialog.dismiss();                      
-			    }  
-			});  
-			ad.show();  
 		}
 		
+		
+
 	}
 
 	@Override
@@ -256,9 +281,26 @@ public class MainActivity extends Activity implements LocationListener
 
 	public void mapIntent(View view)
 	{
-		Intent mapIntent = new Intent(this, MapsActivity.class);
-		mapIntent.putExtra(LATITUDE, location.getLatitude());
-		mapIntent.putExtra(LONGITUDE, location.getLongitude());
-		startActivity(mapIntent);
+		try
+		{
+			Intent mapIntent = new Intent(this, MapsActivity.class);
+			mapIntent.putExtra(LATITUDE, location.getLatitude());
+			mapIntent.putExtra(LONGITUDE, location.getLongitude());
+			startActivity(mapIntent);
+		}
+		catch (Exception e)
+		{
+			Intent mapIntent = new Intent(this, MapsActivity.class);
+			mapIntent.putExtra(LATITUDE,
+					(double) cville.getLatitudeE6() / 1000000);
+			mapIntent.putExtra(LONGITUDE,
+					(double) cville.getLongitudeE6() / 1000000);
+			startActivity(mapIntent);
+		}
+	}
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig){
+		super.onConfigurationChanged(newConfig);
 	}
 }

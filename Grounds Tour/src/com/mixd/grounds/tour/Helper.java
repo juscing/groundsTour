@@ -88,16 +88,7 @@ public class Helper
 			ArrayList<Object> array, Context context)
 	{
 		int stopNum = 0;
-		int nextNum = 0;
-		if (stopNum != 8)
-		{
-			nextNum = stopNum + 1;
-		}
-		else
-		{
-			nextNum = 0;
-		}
-
+		
 		double stopLat = 0;
 		double stopLon = 0;
 
@@ -118,6 +109,16 @@ public class Helper
 		if (array.get(2) instanceof Double)
 		{
 			stopLon = (Double) array.get(2);
+		}
+		
+		int nextNum = 0;
+		if (stopNum != 8)
+		{
+			nextNum = stopNum + 1;
+		}
+		else
+		{
+			nextNum = 0;
 		}
 
 		Resources res = context.getResources();
@@ -213,9 +214,9 @@ public class Helper
 		{
 			nextNum = 0;
 		}
-
-		double latTo = 0;
-		double lonTo = 0;
+		
+		int latTo = 0;
+		int lonTo = 0;
 		String nameTo = "";
 
 		Resources res = context.getResources();
@@ -282,6 +283,7 @@ public class Helper
 		}
 
 		double distance = latLngDist(lat, lon, stopLat, stopLon);
+		
 		System.out.println(distance);
 
 		if (distance < 0.01524)

@@ -21,8 +21,6 @@ import com.google.android.maps.OverlayItem;
 public class MapsActivity extends MapActivity
 {
 
-	GeoPoint cville = new GeoPoint(38029028, -78478088);
-
 	@Override
 	protected boolean isRouteDisplayed()
 	{

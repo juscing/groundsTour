@@ -18,12 +18,14 @@ public class HelperTest {
 
     @Test
     public void testLatLngBearingDeg() {
-        fail("Not yet implemented");
+        double bear = Helper.latLngBearingDeg(lat1, lng1, lat2, lng2);
+        assertEquals(bear, 40, 2);
     }
 
     @Test
     public void testLatLngBearingRad() {
-        fail("Not yet implemented");
+        double bear = Helper.latLngBearingRad(lat1, lng1, lat2, lng2);
+        assertEquals(bear, Math.toRadians(40), 2);
     }
 
 }

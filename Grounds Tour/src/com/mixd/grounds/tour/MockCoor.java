@@ -33,6 +33,7 @@ public class MockCoor extends Activity
 		{
 			double lat = Double.parseDouble(editText1.getText().toString());
 			double lon = Double.parseDouble(editText2.getText().toString());
+						
 			
 			Intent mockIntent = new Intent(this, MockActivity.class);
 			mockIntent.putExtra(LATITUDE, lat);

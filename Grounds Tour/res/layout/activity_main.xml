@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView5"
         android:layout_below="@+id/textView1"
-        android:text="TextView"
+        android:text="Stop"
         android:textColor="@color/white" />
 
 </RelativeLayout>

@@ -61,10 +61,10 @@ public class Helper
 		double lat2rad = Math.toRadians(lat2);
 		double y = Math.sin(dlng) * Math.cos(lat2rad);
 
-		double x = Math.cos(lat1rad) * Math.sin(lat2rad) - Math.sin(lat1rad)
-				* Math.cos(lat2rad) * Math.cos(dlng);
+		double x = (Math.cos(lat1rad) * Math.sin(lat2rad)) - (Math.sin(lat1rad)
+				* Math.cos(lat2rad) * Math.cos(dlng));
 
-		return Math.toDegrees(Math.atan2(y, x));
+		return (Math.toDegrees(Math.atan2(y, x)) + 360) % 360;
 	}
 
 	public static double latLngBearingRad(double lat1, double lng1,
@@ -78,10 +78,10 @@ public class Helper
 		double lat2rad = Math.toRadians(lat2);
 		double y = Math.sin(dlng) * Math.cos(lat2rad);
 
-		double x = Math.cos(lat1rad) * Math.sin(lat2rad) - Math.sin(lat1rad)
-				* Math.cos(lat2rad) * Math.cos(dlng);
+		double x = (Math.cos(lat1rad) * Math.sin(lat2rad)) - (Math.sin(lat1rad)
+				* Math.cos(lat2rad) * Math.cos(dlng));
 
-		return Math.atan2(y, x);
+		return (Math.atan2(y, x) + 2*Math.PI) % (2*Math.PI);
 	}
 
 	public static ArrayList<Object> getCurrentStop(double lat, double lon,

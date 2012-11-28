@@ -27,12 +27,12 @@ public class Helper
 
 		return R * c;
 	}
-
+	/*
 	public static double latLngDist(Location l1, Location l2)
 	{
 		double lat1 = l1.getLatitude();
 		double lng1 = l1.getLongitude();
-		double lat2 = l2.getLatitude();
+		dou branchesble lat2 = l2.getLatitude();
 		double lng2 = l2.getLongitude();
 		final int R = 6371; // km
 
@@ -49,7 +49,7 @@ public class Helper
 
 		return R * c;
 	}
-
+    */
 	public static double latLngBearingDeg(double lat1, double lng1,
 			double lat2, double lng2)
 	{

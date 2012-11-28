@@ -36,9 +36,8 @@ public class MainActivity extends Activity implements LocationListener
 	private ArrayList<Object> nextStop;
 	public final static String LATITUDE = "lat";
 	public final static String LONGITUDE = "lon";
-	private Matrix arrowMatrix;
 	private ImageView arrow;
-	private double prevBear;
+	//private double prevBear;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -169,8 +168,8 @@ public class MainActivity extends Activity implements LocationListener
 			nextStop.add((double)finalDest.getLatitudeE6()/1000000);
 			nextStop.add((double)finalDest.getLongitudeE6()/1000000);
 			nextStop.add(myStopName);
-			prevBear = 0;
-			arrowMatrix = new Matrix();
+			//prevBear = 0;
+			Matrix arrowMatrix = new Matrix();
 	        arrow = (ImageView) findViewById(R.id.imageView1);
 			
 			onLocationChanged(location);
@@ -238,10 +237,12 @@ public class MainActivity extends Activity implements LocationListener
 		}
 		
 		float bearingToStop = (float) Helper.latLngBearingDeg(location.getLatitude(), location.getLongitude(), (Double) nextStop.get(1), (Double) nextStop.get(2));
+		float myBearing = location.getBearing();
+		Matrix arrowMatrix = new Matrix();
 		arrow.setScaleType(ScaleType.MATRIX);   //required
-		arrowMatrix.postRotate((float) prevBear - bearingToStop, 20, 20);
+		arrowMatrix.postRotate((bearingToStop - myBearing), 37/2, 25);
 		arrow.setImageMatrix(arrowMatrix);
-		prevBear = bearingToStop;
+		//Not needed prevBear = bearingToStop;
 	}
 
 	@Override

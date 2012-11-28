@@ -9,12 +9,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Matrix;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,9 @@ public class MainActivity extends Activity implements LocationListener
 	private ArrayList<Object> nextStop;
 	public final static String LATITUDE = "lat";
 	public final static String LONGITUDE = "lon";
+	private Matrix arrowMatrix;
+	private ImageView arrow;
+	private double prevBear;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -163,6 +169,9 @@ public class MainActivity extends Activity implements LocationListener
 			nextStop.add((double)finalDest.getLatitudeE6()/1000000);
 			nextStop.add((double)finalDest.getLongitudeE6()/1000000);
 			nextStop.add(myStopName);
+			prevBear = 0;
+			arrowMatrix = new Matrix();
+	        arrow = (ImageView) findViewById(R.id.imageView1);
 			
 			onLocationChanged(location);
 		}
@@ -172,7 +181,7 @@ public class MainActivity extends Activity implements LocationListener
 			longitudeField.setText("Location not available");
 			stopField.setText("Location not available");
 		}
-
+		
 	}
 
 	/* Request updates at startup */
@@ -202,7 +211,7 @@ public class MainActivity extends Activity implements LocationListener
 		longitudeField.setText(String.valueOf(df.format(lon)));
 		
 		ArrayList<Object> newArray = Helper.getCurrentStop(lat, lon, nextStop, this);
-		int newInt = 0; 
+		int newInt = 0;
 		int thisInt = 0;
 		if (newArray.get(0) instanceof Integer){
 			newInt = (Integer) newArray.get(0);
@@ -223,11 +232,16 @@ public class MainActivity extends Activity implements LocationListener
 			    @Override  
 			    public void onClick(DialogInterface dialog, int which) {  
 			        dialog.dismiss();                      
-			    }  
+			    }
 			});  
 			ad.show();  
 		}
 		
+		float bearingToStop = (float) Helper.latLngBearingDeg(location.getLatitude(), location.getLongitude(), (Double) nextStop.get(1), (Double) nextStop.get(2));
+		arrow.setScaleType(ScaleType.MATRIX);   //required
+		arrowMatrix.postRotate((float) prevBear - bearingToStop, 20, 20);
+		arrow.setImageMatrix(arrowMatrix);
+		prevBear = bearingToStop;
 	}
 
 	@Override

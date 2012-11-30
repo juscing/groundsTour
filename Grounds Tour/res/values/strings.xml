@@ -24,5 +24,7 @@
     <string name="set_satellite">Satellite</string>
     <string name="set_roadmap">Roadmap</string>
     <string name="nextcoor">Enter Next Coordinate</string>
+    <string name="follow">Follow the Arrow!</string>
+    <string name="howclose">You are...</string>
 
 </resources>

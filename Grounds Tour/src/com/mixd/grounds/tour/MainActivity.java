@@ -30,6 +30,7 @@ public class MainActivity extends Activity implements LocationListener
 	private TextView latitudeField;
 	private TextView longitudeField;
 	private TextView stopField;
+	private TextView temp;
 	private String provider;
 	private Location location;
 	private int firstStop;
@@ -52,7 +53,7 @@ public class MainActivity extends Activity implements LocationListener
 		latitudeField = (TextView) findViewById(R.id.textView4);
 		longitudeField = (TextView) findViewById(R.id.textView5);
 		stopField = (TextView) findViewById(R.id.textView6);
-
+		temp = (TextView) findViewById(R.id.textView9);
 		// Get the location manager sendMock(View view)
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		// Define the criteria how to select the location provider -> use
@@ -192,7 +193,7 @@ public class MainActivity extends Activity implements LocationListener
 	{
 		super.onResume();
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-				1000, 1, this);
+				0, 0, this);
 	}
 
 	/* Remove the locationlistener updates when Activity is paused */
@@ -272,7 +273,19 @@ public class MainActivity extends Activity implements LocationListener
 			arrow.setScaleType(ScaleType.MATRIX); // required
 			arrowMatrix.postRotate((bearingToStop - myBearing), 37 / 2, 25);
 			arrow.setImageMatrix(arrowMatrix);
-			// Not needed prevBear = bearingToStop;
+			
+			//Adding some hot/warm/cold stuff
+			double distToStop = Helper.latLngDist(location.getAltitude(), location.getLongitude(), (Double) nextStop.get(1), (Double) nextStop.get(2));
+			if(distToStop < 10){
+			    temp.setText("HOT");
+			    temp.setTextColor(getResources().getColor(R.color.hot));
+			}else if(distToStop < 30){
+			    temp.setText("Warm");
+			    temp.setTextColor(getResources().getColor(R.color.warm));
+			}else{
+			    temp.setText("Cold");
+			    temp.setTextColor(getResources().getColor(R.color.darkblue));
+			}
 		}
 	}
 

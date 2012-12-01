@@ -408,4 +408,9 @@ public class MainActivity extends Activity implements LocationListener
 		ad.show();
 		
 	}
+	
+	public void goToHistory(View view){
+		Intent intent = new Intent(this,HistoryButton.class);
+		startActivity(intent);
+	}
 }

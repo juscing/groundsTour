@@ -315,8 +315,8 @@ public class MockActivity extends Activity
 	public void nextCoor(View view)
 	{
 		Intent intent = new Intent(this, NextCoor.class);
-		intent.putExtra(LATITUDE, latitudeField.getText());
-		intent.putExtra(LONGITUDE, longitudeField.getText());
+		intent.putExtra(LATITUDE, latitudeField.getText().toString());
+		intent.putExtra(LONGITUDE, longitudeField.getText().toString());
 		startActivity(intent);
 	}
 

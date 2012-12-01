@@ -121,6 +121,8 @@ public final class R {
         public static final int set_roadmap=0x7f06001f;
         public static final int set_satellite=0x7f06001e;
         public static final int title_activity_choice=0x7f060016;
+        public static final int title_activity_display_history=0x7f060029;
+        public static final int title_activity_history_button=0x7f060028;
         public static final int title_activity_main=0x7f06000c;
         public static final int title_activity_main_screen=0x7f060013;
         public static final int title_activity_maps=0x7f060010;

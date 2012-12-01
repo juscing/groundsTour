@@ -144,8 +144,8 @@ public class MainActivity extends Activity implements LocationListener
 							currentDest.getLongitudeE6());
 					stopNum = i;
 					stopField.setText(stopName);
-					nextLat.setText(currentDest.getLatitudeE6() / 1000000);
-                    nextLng.setText(currentDest.getLongitudeE6() / 1000000);
+					nextLat.setText(currentDest.getLatitudeE6() / 1000000 + "");
+                    nextLng.setText(currentDest.getLongitudeE6() / 1000000 + "");
 
 				}
 				else

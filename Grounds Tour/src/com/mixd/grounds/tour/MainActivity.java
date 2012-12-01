@@ -31,6 +31,8 @@ public class MainActivity extends Activity implements LocationListener
 	private TextView longitudeField;
 	private TextView stopField;
 	private TextView temp;
+	private TextView nextLat;
+	private TextView nextLng;
 	private String provider;
 	private Location location;
 	private int firstStop;
@@ -54,6 +56,8 @@ public class MainActivity extends Activity implements LocationListener
 		longitudeField = (TextView) findViewById(R.id.textView5);
 		stopField = (TextView) findViewById(R.id.textView6);
 		temp = (TextView) findViewById(R.id.textView9);
+		nextLat = (TextView) findViewById(R.id.textView14);
+		nextLng = (TextView) findViewById(R.id.textView15);
 		// Get the location manager sendMock(View view)
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		// Define the criteria how to select the location provider -> use
@@ -140,6 +144,8 @@ public class MainActivity extends Activity implements LocationListener
 							currentDest.getLongitudeE6());
 					stopNum = i;
 					stopField.setText(stopName);
+					nextLat.setText(currentDest.getLatitudeE6() / 1000000);
+                    nextLng.setText(currentDest.getLongitudeE6() / 1000000);
 
 				}
 				else
@@ -161,6 +167,8 @@ public class MainActivity extends Activity implements LocationListener
 						stopNum = i;
 						myStopName = stopName;
 						stopField.setText(stopName);
+						nextLat.setText(finalDest.getLatitudeE6() / 1000000);
+						nextLng.setText(finalDest.getLongitudeE6() / 1000000);
 					}
 				}
 			}
@@ -173,7 +181,6 @@ public class MainActivity extends Activity implements LocationListener
 			nextStop.add((double) finalDest.getLongitudeE6() / 1000000);
 			nextStop.add(myStopName);
 			// prevBear = 0;
-			Matrix arrowMatrix = new Matrix();
 			arrow = (ImageView) findViewById(R.id.imageView1);
 
 			onLocationChanged(location);
@@ -234,6 +241,8 @@ public class MainActivity extends Activity implements LocationListener
 			{
 				nextStop = (ArrayList<Object>) newArray.clone();
 				stopField.setText(String.valueOf(nextStop.get(3)));
+				nextLat.setText((String)nextStop.get(1));
+				nextLng.setText((String)nextStop.get(2));
 				AlertDialog ad = new AlertDialog.Builder(this).create();
 				ad.setCancelable(false); // This blocks the 'BACK' button
 				ad.setMessage("You've arrived at the stop!");

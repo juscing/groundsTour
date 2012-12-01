@@ -26,5 +26,8 @@
     <string name="nextcoor">Enter Next Coordinate</string>
     <string name="follow">Follow the Arrow!</string>
     <string name="howclose">You are...</string>
+    <string name="cold">Cold</string>
+    <string name="yourloc">Your Location:</string>
+    <string name="dest">Destination:</string>
 
 </resources>

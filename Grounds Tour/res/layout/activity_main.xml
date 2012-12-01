@@ -85,6 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView6"
         android:layout_centerVertical="true"
-        android:src="@drawable/arrow" />
+        android:src="@drawable/arrow" 
+        android:scaleType="matrix" />
 
 </RelativeLayout>

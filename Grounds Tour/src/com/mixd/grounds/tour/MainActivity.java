@@ -18,7 +18,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,12 +36,11 @@ public class MainActivity extends Activity implements LocationListener
 	private ArrayList<Object> nextStop;
 	public final static String LATITUDE = "lat";
 	public final static String LONGITUDE = "lon";
+	private boolean check = true;
 
 	GeoPoint cville = new GeoPoint(38035687, -78503313);
 
 	private ImageView arrow;
-
-	// private double prevBear;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -52,11 +50,11 @@ public class MainActivity extends Activity implements LocationListener
 		latitudeField = (TextView) findViewById(R.id.textView4);
 		longitudeField = (TextView) findViewById(R.id.textView5);
 		stopField = (TextView) findViewById(R.id.textView6);
+		arrow = (ImageView) findViewById(R.id.imageView1);
 
 		// Get the location manager sendMock(View view)
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		// Define the criteria how to select the location provider -> use
-		// sendMock(View view)
 
 		// default
 		Criteria criteria = new Criteria();
@@ -171,9 +169,6 @@ public class MainActivity extends Activity implements LocationListener
 			nextStop.add((double) finalDest.getLatitudeE6() / 1000000);
 			nextStop.add((double) finalDest.getLongitudeE6() / 1000000);
 			nextStop.add(myStopName);
-			// prevBear = 0;
-			Matrix arrowMatrix = new Matrix();
-			arrow = (ImageView) findViewById(R.id.imageView1);
 
 			onLocationChanged(location);
 		}
@@ -212,75 +207,76 @@ public class MainActivity extends Activity implements LocationListener
 		latitudeField.setText(String.valueOf(df.format(lat)));
 		longitudeField.setText(String.valueOf(df.format(lon)));
 
-		ArrayList<Object> newArray = Helper.getCurrentStop(lat, lon, nextStop,
-				this);
+		float bearingToStop = (float) Helper.latLngBearingDeg(lat, lon,
+				(Double) nextStop.get(1), (Double) nextStop.get(2));
+		float myBearing = location.getBearing();
 
-		int newInt = 0;
-		int thisInt = 0;
-		if (newArray.get(0) instanceof Integer)
+		Matrix arrowMatrix = new Matrix();
+		arrowMatrix.postRotate(bearingToStop - myBearing, 37 / 2, 25);
+		arrow.setImageMatrix(arrowMatrix);
+		if (check)
 		{
-			newInt = (Integer) newArray.get(0);
-		}
+			ArrayList<Object> newArray = Helper.getCurrentStop(lat, lon,
+					nextStop, this);
 
-		if (nextStop.get(0) instanceof Integer)
-		{
-			thisInt = (Integer) nextStop.get(0);
-		}
-
-		if (newInt != thisInt)
-		{
-			if (newInt != firstStop)
+			int newInt = 0;
+			int thisInt = 0;
+			if (newArray.get(0) instanceof Integer)
 			{
-				nextStop = (ArrayList<Object>) newArray.clone();
-				stopField.setText(String.valueOf(nextStop.get(3)));
-				AlertDialog ad = new AlertDialog.Builder(this).create();
-				ad.setCancelable(false); // This blocks the 'BACK' button
-				ad.setMessage("You've arrived at the stop!");
-				ad.setButton("OK", new DialogInterface.OnClickListener()
-				{
-					@Override
-					public void onClick(DialogInterface dialog, int which)
-					{
-						dialog.dismiss();
-					}
-				});
-				ad.show();
-			}
-			else
-			{
-				AlertDialog ad = new AlertDialog.Builder(this).create();
-				ad.setCancelable(false); // This blocks the 'BACK' button
-				ad.setMessage("You've finished the tour!");
-				ad.setButton("OK", new DialogInterface.OnClickListener()
-				{
-					@Override
-					public void onClick(DialogInterface dialog, int which)
-					{
-						dialog.dismiss();
-					}
-				});
-				ad.show();
-
-				stopField.setText("You're done!");
+				newInt = (Integer) newArray.get(0);
 			}
 
-			float bearingToStop = (float) Helper.latLngBearingDeg(
-					location.getLatitude(), location.getLongitude(),
-					(Double) nextStop.get(1), (Double) nextStop.get(2));
-			float myBearing = location.getBearing();
-			Matrix arrowMatrix = new Matrix();
-			arrow.setScaleType(ScaleType.MATRIX); // required
-			arrowMatrix.postRotate((bearingToStop - myBearing), 37 / 2, 25);
-			arrow.setImageMatrix(arrowMatrix);
-			// Not needed prevBear = bearingToStop;
+			if (nextStop.get(0) instanceof Integer)
+			{
+				thisInt = (Integer) nextStop.get(0);
+			}
+
+			if (newInt != thisInt)
+			{
+				if (newInt != firstStop)
+				{
+					nextStop = (ArrayList<Object>) newArray.clone();
+					stopField.setText(String.valueOf(nextStop.get(3)));
+					AlertDialog ad = new AlertDialog.Builder(this).create();
+					ad.setCancelable(false); // This blocks the 'BACK' button
+					ad.setMessage("You've arrived at the stop!");
+					ad.setButton("OK", new DialogInterface.OnClickListener()
+					{
+						@Override
+						public void onClick(DialogInterface dialog, int which)
+						{
+							dialog.dismiss();
+						}
+					});
+					ad.show();
+				}
+				else
+				{
+					AlertDialog ad = new AlertDialog.Builder(this).create();
+					ad.setCancelable(false); // This blocks the 'BACK' button
+					ad.setMessage("You've finished the tour!");
+					ad.setButton("OK", new DialogInterface.OnClickListener()
+					{
+						@Override
+						public void onClick(DialogInterface dialog, int which)
+						{
+							dialog.dismiss();
+						}
+					});
+					ad.show();
+
+					stopField.setText("You're done!");
+					check = false;
+				}
+			}
 		}
 	}
 
 	@Override
 	public void onProviderDisabled(String provider)
 	{
-		Toast.makeText(this, "Disabled provider " + provider, Toast.LENGTH_LONG)
-				.show();
+		Toast.makeText(this, "Disabled provider " + provider,
+				Toast.LENGTH_SHORT).show();
 
 	}
 
@@ -295,8 +291,8 @@ public class MainActivity extends Activity implements LocationListener
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras)
 	{
-		Toast.makeText(this, "Disabled provider " + provider, Toast.LENGTH_LONG)
-				.show();
+		Toast.makeText(this, "Disabled provider " + provider,
+				Toast.LENGTH_SHORT).show();
 
 	}
 

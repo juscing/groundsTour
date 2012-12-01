@@ -64,6 +64,7 @@ public class Helper
 		double x = Math.cos(lat1rad) * Math.sin(lat2rad) - Math.sin(lat1rad)
 				* Math.cos(lat2rad) * Math.cos(dlng);
 
+		System.out.println(Math.toDegrees(Math.atan2(y, x)));
 		return Math.toDegrees(Math.atan2(y, x));
 	}
 
@@ -185,7 +186,7 @@ public class Helper
 		}
 
 		double distance = latLngDist(lat, lon, stopLat, stopLon);
-		System.out.println(distance);
+		
 
 		if (distance < 0.01524)
 		{

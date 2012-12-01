@@ -227,6 +227,8 @@ public class MainActivity extends Activity implements LocationListener
 		latitudeField.setText(String.valueOf(df.format(lat)));
 		longitudeField.setText(String.valueOf(df.format(lon)));
 
+		
+		
 		if (check)
 		{
 			ArrayList<Object> newArray = Helper.getCurrentStop(lat, lon,
@@ -234,6 +236,16 @@ public class MainActivity extends Activity implements LocationListener
 
 			int newInt = 0;
 			int thisInt = 0;
+			
+			float bearingToStop = (float) Helper.latLngBearingDeg(lat, lon,
+					(Double) nextStop.get(1), (Double) nextStop.get(2));
+			float myBearing = location.getBearing();
+			
+			arrow = (ImageView) findViewById(R.id.imageView1);
+			Matrix arrowMatrix = new Matrix();
+			arrowMatrix.postRotate(bearingToStop - myBearing, 37 / 2, 25);
+			arrow.setImageMatrix(arrowMatrix);
+			
 
 			// Adding some hot/warm/cold stuff
 			double distToStop = Helper.latLngDist(location.getAltitude(),
@@ -309,14 +321,6 @@ public class MainActivity extends Activity implements LocationListener
 				}
 
 			}
-			
-			float bearingToStop = (float) Helper.latLngBearingDeg(lat, lon,
-					(Double) nextStop.get(1), (Double) nextStop.get(2));
-			float myBearing = location.getBearing();
-
-			Matrix arrowMatrix = new Matrix();
-			arrowMatrix.postRotate(bearingToStop - myBearing, 37 / 2, 25);
-			arrow.setImageMatrix(arrowMatrix);
 		}
 	}
 

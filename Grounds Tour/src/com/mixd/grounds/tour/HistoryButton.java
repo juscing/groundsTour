@@ -4,16 +4,20 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class HistoryButton extends ListActivity {
 
 	public static final String VALUE = "value";
+	private ListView listView;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_button);
+
         
         
     }
@@ -23,8 +27,8 @@ public class HistoryButton extends ListActivity {
     { 
         super.onListItemClick(l, v, position, id);
         // Get the item that was clicked
-        Object o = this.getListAdapter().getItem(position);
-        String keyword = o.toString();
+        String keyword = l.getItemAtPosition(position).toString();
+        System.out.println(keyword);
         Intent intent = new Intent(this,DisplayHistory.class);
     	intent.putExtra(VALUE,keyword);
     	startActivity(intent);

@@ -22,7 +22,8 @@
         android:layout_alignBottom="@+id/button1"
         android:layout_marginLeft="52dp"
         android:layout_toRightOf="@+id/button1"
-        android:text="@string/History" />
+        android:text="@string/History" 
+        android:onClick="goToHistory"/>
 
     <TextView
         android:id="@+id/textView3"

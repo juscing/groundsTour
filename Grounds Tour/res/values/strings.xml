@@ -15,7 +15,7 @@
     <string name="next_stop">Next Stop:</string>
     <string name="title_activity_choice">Choice</string>
     <string name="use_mock">Pick a mock location.</string>
-    <string name="send_mock">Use mock location.</string>
+    <string name="send_mock">Set Mock Location</string>
     <string name="use_normal">Use the standard location.</string>
     <string name="title_activity_mock_coor">Set Mock Coordinates</string>
     <string name="enter_lat">Enter mock latitude.</string>

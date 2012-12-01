@@ -23,31 +23,31 @@ public class DisplayHistory extends Activity
 		
 		Resources res = getResources();
 		
-		if(place == "Rotunda"){
+		if(place.equals("Rotunda")){
 			textView.setText(res.getString(R.string.Rotunda));
 		}
-		if(place == "Clark Hall"){
+		if(place.equals("Clark Hall")){
 			textView.setText(res.getString(R.string.Clark_Hall));
 		}
-		if(place == "Chemistry Building"){
+		if(place.equals("Chemistry Building")){
 			textView.setText(res.getString(R.string.Chemistry));
 		}
-		if(place == "OHill"){
+		if(place.equals("OHill")){
 			textView.setText(res.getString(R.string.OHill));
 		}
-		if(place == "AFC Clock Tower"){
+		if(place.equals("AFC Clock Tower")){
 			textView.setText(res.getString(R.string.AFC_Clock));
 		}
-		if(place == "Rice Hall"){
+		if(place.equals("Rice Hall")){
 			textView.setText(res.getString(R.string.Rice_Hall));
 		}
-		if(place == "Nau Hall"){
+		if(place.equals("Nau Hall")){
 			textView.setText(res.getString(R.string.Nau_Hall));
 		}
-		if(place == "Homer Statue"){
+		if(place.equals("Homer Statue")){
 			textView.setText(res.getString(R.string.Homer));
 		}
-		if(place == "Chapel"){
+		if(place.equals("Chapel")){
 			textView.setText(res.getString(R.string.Chapel));
 		}
 		

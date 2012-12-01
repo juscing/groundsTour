@@ -24,6 +24,8 @@ public final class R {
     public static final class color {
         public static final int black=0x7f040001;
         public static final int darkblue=0x7f040000;
+        public static final int hot=0x7f040003;
+        public static final int warm=0x7f040004;
         public static final int white=0x7f040002;
     }
     public static final class drawable {
@@ -37,20 +39,29 @@ public final class R {
     public static final class id {
         public static final int button1=0x7f090000;
         public static final int button2=0x7f090001;
-        public static final int button3=0x7f09000a;
-        public static final int editText1=0x7f09000b;
-        public static final int editText2=0x7f09000c;
-        public static final int imageView1=0x7f090008;
-        public static final int mapview=0x7f090009;
-        public static final int menu_settings=0x7f09000d;
-        public static final int roadmap_setting=0x7f09000f;
-        public static final int satellite_setting=0x7f09000e;
-        public static final int textView1=0x7f090006;
+        public static final int button3=0x7f090013;
+        public static final int editText1=0x7f090014;
+        public static final int editText2=0x7f090015;
+        public static final int imageView1=0x7f090011;
+        public static final int mapview=0x7f090012;
+        public static final int menu_settings=0x7f090016;
+        public static final int roadmap_setting=0x7f090018;
+        public static final int satellite_setting=0x7f090017;
+        public static final int textView1=0x7f090008;
+        public static final int textView10=0x7f090005;
+        public static final int textView11=0x7f090009;
+        public static final int textView12=0x7f09000a;
+        public static final int textView13=0x7f09000b;
+        public static final int textView14=0x7f09000c;
+        public static final int textView15=0x7f09000d;
         public static final int textView2=0x7f090002;
-        public static final int textView3=0x7f090004;
-        public static final int textView4=0x7f090003;
-        public static final int textView5=0x7f090005;
+        public static final int textView3=0x7f090003;
+        public static final int textView4=0x7f090004;
+        public static final int textView5=0x7f090006;
         public static final int textView6=0x7f090007;
+        public static final int textView7=0x7f090010;
+        public static final int textView8=0x7f09000e;
+        public static final int textView9=0x7f09000f;
     }
     public static final class layout {
         public static final int activity_choice=0x7f030000;
@@ -82,9 +93,13 @@ public final class R {
         public static final int Rice_Hall=0x7f060005;
         public static final int Rotunda=0x7f060000;
         public static final int app_name=0x7f060009;
+        public static final int cold=0x7f060023;
+        public static final int dest=0x7f060025;
         public static final int enter_lat=0x7f06001b;
         public static final int enter_lon=0x7f06001c;
+        public static final int follow=0x7f060021;
         public static final int hello_world=0x7f06000a;
+        public static final int howclose=0x7f060022;
         public static final int intro_text=0x7f06000d;
         public static final int lat_label=0x7f06000e;
         public static final int long_label=0x7f06000f;
@@ -103,6 +118,7 @@ public final class R {
         public static final int title_activity_splash_screen=0x7f060012;
         public static final int use_mock=0x7f060017;
         public static final int use_normal=0x7f060019;
+        public static final int yourloc=0x7f060024;
     }
     public static final class style {
         public static final int AppTheme=0x7f070000;

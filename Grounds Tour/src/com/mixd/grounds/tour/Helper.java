@@ -187,7 +187,7 @@ public class Helper
 		double distance = latLngDist(lat, lon, stopLat, stopLon);
 		System.out.println(distance);
 
-		if (distance < 0.01524)
+		if (distance < 0.009144)
 		{
 			array = new ArrayList<Object>();
 
@@ -286,7 +286,7 @@ public class Helper
 		
 		System.out.println(distance);
 
-		if (distance < 0.01524)
+		if (distance < 0.009144)
 		{
 			ArrayList<Object> array = new ArrayList<Object>();
 			array.add(nextNum);

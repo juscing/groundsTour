@@ -285,10 +285,10 @@ public class MainActivity extends Activity implements LocationListener
 			
 			//Adding some hot/warm/cold stuff
 			double distToStop = Helper.latLngDist(location.getAltitude(), location.getLongitude(), (Double) nextStop.get(1), (Double) nextStop.get(2));
-			if(distToStop < 10){
+			if(distToStop < 0.018288){
 			    temp.setText("HOT");
 			    temp.setTextColor(getResources().getColor(R.color.hot));
-			}else if(distToStop < 30){
+			}else if(distToStop < 0.03048){
 			    temp.setText("Warm");
 			    temp.setTextColor(getResources().getColor(R.color.warm));
 			}else{

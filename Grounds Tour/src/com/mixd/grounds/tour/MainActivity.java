@@ -56,6 +56,7 @@ public class MainActivity extends Activity implements LocationListener
 		stopField = (TextView) findViewById(R.id.textView6);
 
 		temp = (TextView) findViewById(R.id.textView9);
+		
 		nextLat = (TextView) findViewById(R.id.textView14);
 		nextLng = (TextView) findViewById(R.id.textView15);
 
@@ -171,8 +172,9 @@ public class MainActivity extends Activity implements LocationListener
 						stopNum = i;
 						myStopName = stopName;
 						stopField.setText(stopName);
-						nextLat.setText(finalDest.getLatitudeE6() / 1000000);
-						nextLng.setText(finalDest.getLongitudeE6() / 1000000);
+						
+						nextLat.setText((double) finalDest.getLatitudeE6() / 1000000 + "");
+						nextLng.setText((double) finalDest.getLongitudeE6() / 1000000 + "");
 					}
 				}
 			}

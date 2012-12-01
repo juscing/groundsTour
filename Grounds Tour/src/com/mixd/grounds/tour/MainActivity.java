@@ -188,7 +188,7 @@ public class MainActivity extends Activity implements LocationListener
 			nextStop.add(myStopName);
 
 			// prevBear = 0;
-			arrow = (ImageView) findViewById(R.id.imageView1);
+			
 
 			onLocationChanged(location);
 		}
@@ -261,7 +261,7 @@ public class MainActivity extends Activity implements LocationListener
 			else
 			{
 				temp.setText("Cold");
-				temp.setTextColor(getResources().getColor(R.color.darkblue));
+				temp.setTextColor(getResources().getColor(R.color.blue));
 			}
 			
 			

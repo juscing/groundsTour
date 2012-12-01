@@ -23,6 +23,7 @@ public final class R {
     }
     public static final class color {
         public static final int black=0x7f040001;
+        public static final int blue=0x7f040005;
         public static final int darkblue=0x7f040000;
         public static final int hot=0x7f040003;
         public static final int warm=0x7f040004;
@@ -42,26 +43,26 @@ public final class R {
         public static final int button3=0x7f090013;
         public static final int editText1=0x7f090014;
         public static final int editText2=0x7f090015;
-        public static final int imageView1=0x7f090011;
-        public static final int mapview=0x7f090012;
+        public static final int imageView1=0x7f09000b;
+        public static final int mapview=0x7f090011;
         public static final int menu_settings=0x7f090016;
         public static final int roadmap_setting=0x7f090018;
         public static final int satellite_setting=0x7f090017;
-        public static final int textView1=0x7f090008;
+        public static final int textView1=0x7f090012;
         public static final int textView10=0x7f090005;
-        public static final int textView11=0x7f090009;
-        public static final int textView12=0x7f09000a;
-        public static final int textView13=0x7f09000b;
-        public static final int textView14=0x7f09000c;
-        public static final int textView15=0x7f09000d;
+        public static final int textView11=0x7f090007;
+        public static final int textView12=0x7f090008;
+        public static final int textView13=0x7f090009;
+        public static final int textView14=0x7f090006;
+        public static final int textView15=0x7f09000a;
         public static final int textView2=0x7f090002;
         public static final int textView3=0x7f090003;
         public static final int textView4=0x7f090004;
-        public static final int textView5=0x7f090006;
-        public static final int textView6=0x7f090007;
-        public static final int textView7=0x7f090010;
-        public static final int textView8=0x7f09000e;
-        public static final int textView9=0x7f09000f;
+        public static final int textView5=0x7f09000f;
+        public static final int textView6=0x7f090010;
+        public static final int textView7=0x7f09000c;
+        public static final int textView8=0x7f09000d;
+        public static final int textView9=0x7f09000e;
     }
     public static final class layout {
         public static final int activity_choice=0x7f030000;

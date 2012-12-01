@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Stops">
+        <item >Rotunda</item>
+        <item >Clark Hall</item>
+        <item >Chemistry Building</item>
+        <item >OHill</item>
+        <item >AFC Clock Tower</item>
+        <item >Rice Hall</item>
+        <item >Nau Hall</item>
+        <item >Homer Statue</item>
+        <item >Chapel</item>
+    </string-array>
+    
+</resources>

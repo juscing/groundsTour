@@ -35,10 +35,12 @@ public class MockCoor extends Activity
 			double lon = Double.parseDouble(editText2.getText().toString());
 						
 			
+			int iflags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
 			Intent mockIntent = new Intent(this, MockActivity.class);
+			mockIntent.setFlags(iflags);					
 			mockIntent.putExtra(LATITUDE, lat);
 			mockIntent.putExtra(LONGITUDE, lon);
-			startActivityForResult(mockIntent,1);
+			startActivity(mockIntent);
 		}
 		catch (NumberFormatException e)
 		{

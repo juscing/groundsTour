@@ -23,6 +23,8 @@ public class MockActivity extends Activity
 	private TextView latitudeField;
 	private TextView longitudeField;
 	private TextView stopField;
+	private TextView stopLatField;
+	private TextView stopLonField;
 	public final static String LATITUDE = "lat";
 	public final static String LONGITUDE = "lon";
 	public final static String ACTIVITY = "lol";
@@ -32,13 +34,12 @@ public class MockActivity extends Activity
 
 	private GeoPoint finalDest;
 	private int stopNum;
-	
+	private int firstNum;
+
 	TimerTask task;
 	final Handler handler = new Handler();
 	Timer timer;
-	
-	
-	
+
 	public void check()
 	{
 		task = new TimerTask()
@@ -49,52 +50,95 @@ public class MockActivity extends Activity
 				{
 					public void run()
 					{
-						ArrayList<Object> array = Helper.getMockStop(stopNum, latitude,
-								longitude, (double) finalDest.getLatitudeE6() / 1000000,
-								(double) finalDest.getLongitudeE6() / 1000000, MockActivity.activity);
+						ArrayList<Object> array = Helper.getMockStop(stopNum,
+								latitude, longitude,
+								(double) finalDest.getLatitudeE6() / 1000000,
+								(double) finalDest.getLongitudeE6() / 1000000,
+								MockActivity.activity);
 
 						if (array != null)
 						{
 							int nextNum = 0;
+							int stopLat = 0;
+							int stopLon = 0;
 							if (array.get(0) instanceof Integer)
 							{
 								nextNum = (Integer) array.get(0);
-								System.out.println("Numyay!");
 							}
 							if (nextNum != stopNum)
-							{
-								stopNum = nextNum;
-								stopField.setText(String.valueOf(array.get(3)));
-								int latTo = 0;
-								int lonTo = 0;
-								System.out.println(array.get(1));
-								if (array.get(1) instanceof Integer)
-								{									
-									latTo = (Integer) array.get(1);
-									
-									
-									System.out.println("latYay!"); 
-											
-								}
-								if(array.get(2) instanceof Integer){
-									lonTo = (Integer) array.get(2);
-								}
-								
-								finalDest = new GeoPoint(latTo, lonTo);
-								
-								
-								AlertDialog ad = new AlertDialog.Builder(MockActivity.activity).create();
-								ad.setCancelable(false); // This blocks the 'BACK' button
-								ad.setMessage("You've arrived at the stop!");
-								ad.setButton("OK", new DialogInterface.OnClickListener()
+							{								
+								if (nextNum != firstNum)
 								{
-									@Override
-									public void onClick(DialogInterface dialog, int which)
+									if (array.get(1) instanceof Integer)
 									{
-										dialog.dismiss();
+										stopLat = (Integer) array.get(1);
 									}
-								});
-								ad.show();
+									if (array.get(2) instanceof Integer)
+									{
+										stopLon = (Integer) array.get(2);
+									}
+									
+									stopNum = nextNum;
+									stopField.setText(String.valueOf(array
+											.get(3)));
+									stopLatField.setText(String.valueOf(stopLat));
+									stopLonField.setText(String.valueOf(stopLon));
+									int latTo = 0;
+									int lonTo = 0;
+									System.out.println(array.get(1));
+									if (array.get(1) instanceof Integer)
+									{
+										latTo = (Integer) array.get(1);
+
+									}
+									if (array.get(2) instanceof Integer)
+									{
+										lonTo = (Integer) array.get(2);
+									}
+
+									finalDest = new GeoPoint(latTo, lonTo);
+
+									AlertDialog ad = new AlertDialog.Builder(
+											MockActivity.activity).create();
+									ad.setCancelable(false); // This blocks the
+																// 'BACK' button
+									ad.setMessage("You've arrived at the stop!");
+									ad.setButton(
+											"OK",
+											new DialogInterface.OnClickListener()
+											{
+												@Override
+												public void onClick(
+														DialogInterface dialog,
+														int which)
+												{
+													dialog.dismiss();
+												}
+											});
+									ad.show();
+								} else {
+									AlertDialog ad = new AlertDialog.Builder(
+											MockActivity.activity).create();
+									ad.setCancelable(false); // This blocks the
+																// 'BACK' button
+									ad.setMessage("You've finished the tour!");
+									ad.setButton("OK",
+											new DialogInterface.OnClickListener()
+											{
+												@Override
+												public void onClick(
+														DialogInterface dialog,
+														int which)
+												{
+													dialog.dismiss();
+												}
+											});
+									ad.show();
+									timer.cancel();
+									stopField.setText("You're done!");
+									stopLatField.setText("");
+									stopLonField.setText("");
+								}
 							}
 						}
 					}
@@ -102,6 +146,7 @@ public class MockActivity extends Activity
 			}
 		};
 
+		
 		timer = new Timer();
 
 		timer.schedule(task, 300, 1000);
@@ -118,6 +163,9 @@ public class MockActivity extends Activity
 		latitudeField = (TextView) findViewById(R.id.textView4);
 		longitudeField = (TextView) findViewById(R.id.textView5);
 		stopField = (TextView) findViewById(R.id.textView6);
+		
+		stopLatField = (TextView) findViewById(R.id.textView14);
+		stopLonField = (TextView) findViewById(R.id.textView15);
 
 		Intent intent = getIntent();
 		latitude = intent.getDoubleExtra(MockCoor.LATITUDE, 0);
@@ -213,14 +261,47 @@ public class MockActivity extends Activity
 				}
 			}
 		}
+		stopLatField.setText(String.valueOf((double)finalDest.getLatitudeE6()/1000000));
+		stopLonField.setText(String.valueOf((double)finalDest.getLongitudeE6()/1000000));
+		firstNum = stopNum;
 	}
 
 	@Override
 	public void onBackPressed()
 	{
-		activity = null;
-		timer.cancel();
-		super.onBackPressed();
+		AlertDialog ad = new AlertDialog.Builder(
+				this).create();
+		ad.setCancelable(false); // This blocks the
+									// 'BACK' button
+		ad.setMessage("Are you sure you want to exit the tour?");
+		ad.setButton(DialogInterface.BUTTON_NEGATIVE,"No",
+				new DialogInterface.OnClickListener()
+				{
+					@Override
+					public void onClick(
+							DialogInterface dialog,
+							int which)
+					{
+						dialog.dismiss();
+					}
+				});
+		ad.setButton(DialogInterface.BUTTON_POSITIVE,"Yes",
+				new DialogInterface.OnClickListener()
+				{
+					@Override
+					public void onClick(
+							DialogInterface dialog,
+							int which)
+					{
+						finish();
+						activity = null;
+						timer.cancel();
+						NextCoor.checker = false;
+						
+					}
+				});
+		ad.show();
+		
 	}
 
 	public void mapIntent(View view)
@@ -230,18 +311,37 @@ public class MockActivity extends Activity
 		mapIntent.putExtra(LONGITUDE, longitude);
 		startActivity(mapIntent);
 	}
-	
-	public void nextCoor(View view){
-		onBackPressed();
+
+	public void nextCoor(View view)
+	{
+		Intent intent = new Intent(this, NextCoor.class);
+		intent.putExtra(LATITUDE, latitudeField.getText());
+		intent.putExtra(LONGITUDE, longitudeField.getText());
+		startActivity(intent);
 	}
-	
+
 	@Override
-	public void onResume(){
-		check();
+	public void onResume()
+	{
 		super.onResume();
+
+		check();
+		if (NextCoor.checker)
+		{
+			double lat = NextCoor.latitude;
+			double lon = NextCoor.longitude;
+			latitude = lat;
+			longitude = lon;
+
+			DecimalFormat df = new DecimalFormat("#.000000");
+			latitudeField.setText(df.format(latitude) + "");
+			longitudeField.setText(df.format(longitude) + "");
+		}
+
 	}
-	
-	public void onPause(){
+
+	public void onPause()
+	{
 		timer.cancel();
 		super.onResume();
 	}

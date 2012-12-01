@@ -40,15 +40,16 @@ public final class R {
     public static final class id {
         public static final int button1=0x7f090000;
         public static final int button2=0x7f090001;
-        public static final int button3=0x7f090013;
-        public static final int editText1=0x7f090014;
-        public static final int editText2=0x7f090015;
+        public static final int button3=0x7f090012;
+        public static final int editText1=0x7f090013;
+        public static final int editText2=0x7f090014;
+        public static final int editText3=0x7f090015;
+        public static final int editText4=0x7f090016;
         public static final int imageView1=0x7f09000b;
         public static final int mapview=0x7f090011;
-        public static final int menu_settings=0x7f090016;
-        public static final int roadmap_setting=0x7f090018;
-        public static final int satellite_setting=0x7f090017;
-        public static final int textView1=0x7f090012;
+        public static final int menu_settings=0x7f090017;
+        public static final int roadmap_setting=0x7f090019;
+        public static final int satellite_setting=0x7f090018;
         public static final int textView10=0x7f090005;
         public static final int textView11=0x7f090007;
         public static final int textView12=0x7f090008;
@@ -70,7 +71,8 @@ public final class R {
         public static final int activity_maps=0x7f030002;
         public static final int activity_mock=0x7f030003;
         public static final int activity_mock_coor=0x7f030004;
-        public static final int activity_splash_screen=0x7f030005;
+        public static final int activity_next_coor=0x7f030005;
+        public static final int activity_splash_screen=0x7f030006;
     }
     public static final class menu {
         public static final int activity_choice=0x7f080000;
@@ -79,7 +81,8 @@ public final class R {
         public static final int activity_maps=0x7f080003;
         public static final int activity_mock=0x7f080004;
         public static final int activity_mock_coor=0x7f080005;
-        public static final int activity_splash_screen=0x7f080006;
+        public static final int activity_next_coor=0x7f080006;
+        public static final int activity_splash_screen=0x7f080007;
     }
     public static final class string {
         public static final int AFC_Clock=0x7f060004;
@@ -116,7 +119,9 @@ public final class R {
         public static final int title_activity_maps=0x7f060010;
         public static final int title_activity_mock=0x7f06001d;
         public static final int title_activity_mock_coor=0x7f06001a;
+        public static final int title_activity_next_coor=0x7f060026;
         public static final int title_activity_splash_screen=0x7f060012;
+        public static final int update_mock=0x7f060027;
         public static final int use_mock=0x7f060017;
         public static final int use_normal=0x7f060019;
         public static final int yourloc=0x7f060024;

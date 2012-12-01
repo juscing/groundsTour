@@ -150,7 +150,7 @@ public class Helper
 			intArray = res.getIntArray(R.array.OHill);
 			latTo = intArray[0];
 			lonTo = intArray[1];
-			nameTo = "Ohill";
+			nameTo = "OHill";
 			break;
 		case 4:
 			intArray = res.getIntArray(R.array.AFC_Clock);
@@ -248,7 +248,7 @@ public class Helper
 			intArray = res.getIntArray(R.array.OHill);
 			latTo = intArray[0];
 			lonTo = intArray[1];
-			nameTo = "Ohill";
+			nameTo = "OHill";
 			break;
 		case 4:
 			intArray = res.getIntArray(R.array.AFC_Clock);

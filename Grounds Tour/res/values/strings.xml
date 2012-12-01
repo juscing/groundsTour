@@ -29,5 +29,7 @@
     <string name="cold">Cold</string>
     <string name="yourloc">Your Location:</string>
     <string name="dest">Destination:</string>
+    <string name="title_activity_next_coor">Enter Next Coordinate</string>
+    <string name="update_mock">Update Coordinates</string>
 
 </resources>

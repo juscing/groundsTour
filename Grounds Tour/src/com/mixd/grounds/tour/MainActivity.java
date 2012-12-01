@@ -39,6 +39,7 @@ public class MainActivity extends Activity implements LocationListener
 	private ArrayList<Object> nextStop;
 	public final static String LATITUDE = "lat";
 	public final static String LONGITUDE = "lon";
+	private static Activity activity;
 
 	private boolean check = true;
 
@@ -51,6 +52,7 @@ public class MainActivity extends Activity implements LocationListener
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		activity = this;
 		latitudeField = (TextView) findViewById(R.id.textView4);
 		longitudeField = (TextView) findViewById(R.id.textView5);
 		stopField = (TextView) findViewById(R.id.textView6);
@@ -327,24 +329,24 @@ public class MainActivity extends Activity implements LocationListener
 	@Override
 	public void onProviderDisabled(String provider)
 	{
-		Toast.makeText(this, "Disabled provider " + provider,
-				Toast.LENGTH_SHORT).show();
+//		Toast.makeText(this, "Disabled provider " + provider,
+//				Toast.LENGTH_SHORT).show();
 
 	}
 
 	@Override
 	public void onProviderEnabled(String provider)
 	{
-		Toast.makeText(this, "Enabled new provider " + provider,
-				Toast.LENGTH_LONG).show();
+//		Toast.makeText(this, "Enabled new provider " + provider,
+//				Toast.LENGTH_LONG).show();
 
 	}
 
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras)
 	{
-		Toast.makeText(this, "Disabled provider " + provider,
-				Toast.LENGTH_SHORT).show();
+//		Toast.makeText(this, "Disabled provider " + provider,
+//				Toast.LENGTH_SHORT).show();
 
 	}
 
@@ -372,5 +374,38 @@ public class MainActivity extends Activity implements LocationListener
 	public void onConfigurationChanged(Configuration newConfig)
 	{
 		super.onConfigurationChanged(newConfig);
+	}
+	
+	@Override
+	public void onBackPressed(){
+		AlertDialog ad = new AlertDialog.Builder(
+				this).create();
+		ad.setCancelable(false); // This blocks the
+									// 'BACK' button
+		ad.setMessage("Are you sure you want to exit the tour?");
+		ad.setButton(DialogInterface.BUTTON_NEGATIVE,"No",
+				new DialogInterface.OnClickListener()
+				{
+					@Override
+					public void onClick(
+							DialogInterface dialog,
+							int which)
+					{
+						dialog.dismiss();
+					}
+				});
+		ad.setButton(DialogInterface.BUTTON_POSITIVE,"Yes",
+				new DialogInterface.OnClickListener()
+				{
+					@Override
+					public void onClick(
+							DialogInterface dialog,
+							int which)
+					{
+						finish();
+					}
+				});
+		ad.show();
+		
 	}
 }

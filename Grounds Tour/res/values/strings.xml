@@ -31,5 +31,7 @@
     <string name="dest">Destination:</string>
     <string name="title_activity_next_coor">Enter Next Coordinate</string>
     <string name="update_mock">Update Coordinates</string>
+    <string name="title_activity_history_button">History</string>
+    <string name="title_activity_display_history">History</string>
 
 </resources>

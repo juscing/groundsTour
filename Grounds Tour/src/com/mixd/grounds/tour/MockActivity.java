@@ -59,6 +59,15 @@ public class MockActivity extends Activity
 								(double) finalDest.getLatitudeE6() / 1000000,
 								(double) finalDest.getLongitudeE6() / 1000000,
 								MockActivity.activity);
+						
+						float bearingToStop = (float) Helper.latLngBearingDeg(latitude, longitude,
+				                (double) finalDest.getLatitudeE6() / 1000000,
+				                (double) finalDest.getLongitudeE6() / 1000000);
+						
+				        arrow = (ImageView) findViewById(R.id.imageView1);
+				        Matrix arrowMatrix = new Matrix();
+				        arrowMatrix.postRotate(bearingToStop, 37 / 2, 25);
+				        arrow.setImageMatrix(arrowMatrix);
 
 						if (array != null)
 						{
@@ -262,14 +271,6 @@ public class MockActivity extends Activity
 							currentDest.getLongitudeE6());
 					stopNum = i;
 					stopField.setText(stopName);
-					
-					float bearingToStop = (float) Helper.latLngBearingDeg(latitude, longitude,
-			                (double) currentDest.getLatitudeE6() / 1000000,
-			                (double) currentDest.getLongitudeE6() / 1000000);
-			        arrow = (ImageView) findViewById(R.id.imageView1);
-			        Matrix arrowMatrix = new Matrix();
-			        arrowMatrix.postRotate(-1 * bearingToStop, 37 / 2, 25);
-			        arrow.setImageMatrix(arrowMatrix);
 			        
 			        if (distanceC < 0.018288)
 		            {

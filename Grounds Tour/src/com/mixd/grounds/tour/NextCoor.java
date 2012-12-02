@@ -24,12 +24,15 @@ public class NextCoor extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_next_coor);
 		checker = true;
+		
 		editText3 = (EditText) findViewById(R.id.editText3);
 		editText4 = (EditText) findViewById(R.id.editText4);
 		
 		Intent intent = getIntent();
-		editText3.setText(intent.getStringExtra(MockActivity.LATITUDE).toString());
-		editText4.setText(intent.getStringExtra(MockActivity.LONGITUDE).toString());
+		String lat = intent.getStringExtra(MockActivity.LATITUDE).toString();
+		String lon = intent.getStringExtra(MockActivity.LONGITUDE).toString();
+		editText3.setText(lat);
+		editText4.setText(lon);
 	}
 
 	public void sendMock(View view)

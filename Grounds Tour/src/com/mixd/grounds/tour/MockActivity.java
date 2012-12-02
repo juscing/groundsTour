@@ -10,9 +10,11 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.maps.GeoPoint;
@@ -31,7 +33,7 @@ public class MockActivity extends Activity
 	public static Activity activity;
 	private double latitude;
 	private double longitude;
-
+	private TextView temp;
 	private GeoPoint finalDest;
 	private int stopNum;
 	private int firstNum;
@@ -39,6 +41,8 @@ public class MockActivity extends Activity
 	TimerTask task;
 	final Handler handler = new Handler();
 	Timer timer;
+	
+	private ImageView arrow;
 
 	public void check()
 	{
@@ -159,11 +163,11 @@ public class MockActivity extends Activity
 		activity = this;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mock);
-
+		arrow = (ImageView) findViewById(R.id.imageView1);
 		latitudeField = (TextView) findViewById(R.id.textView4);
 		longitudeField = (TextView) findViewById(R.id.textView5);
 		stopField = (TextView) findViewById(R.id.textView6);
-		
+		temp = (TextView) findViewById(R.id.textView9);
 		stopLatField = (TextView) findViewById(R.id.textView14);
 		stopLonField = (TextView) findViewById(R.id.textView15);
 
@@ -258,12 +262,37 @@ public class MockActivity extends Activity
 							currentDest.getLongitudeE6());
 					stopNum = i;
 					stopField.setText(stopName);
+					
+					float bearingToStop = (float) Helper.latLngBearingDeg(latitude, longitude,
+			                (double) currentDest.getLatitudeE6() / 1000000,
+			                (double) currentDest.getLongitudeE6() / 1000000);
+			        arrow = (ImageView) findViewById(R.id.imageView1);
+			        Matrix arrowMatrix = new Matrix();
+			        arrowMatrix.postRotate(-1 * bearingToStop, 37 / 2, 25);
+			        arrow.setImageMatrix(arrowMatrix);
+			        
+			        if (distanceC < 0.018288)
+		            {
+		                temp.setText("HOT");
+		                temp.setTextColor(getResources().getColor(R.color.hot));
+		            }
+		            else if (distanceC < 0.03048)
+		            {
+		                temp.setText("Warm");
+		                temp.setTextColor(getResources().getColor(R.color.warm));
+		            }
+		            else
+		            {
+		                temp.setText("Cold");
+		                temp.setTextColor(getResources().getColor(R.color.blue));
+		            }
 				}
 			}
 		}
 		stopLatField.setText(String.valueOf((double)finalDest.getLatitudeE6()/1000000));
 		stopLonField.setText(String.valueOf((double)finalDest.getLongitudeE6()/1000000));
 		firstNum = stopNum;
+		
 	}
 
 	@Override

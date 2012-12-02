@@ -33,5 +33,6 @@
     <string name="update_mock">Update Coordinates</string>
     <string name="title_activity_history_button">History</string>
     <string name="title_activity_display_history">History</string>
+    <string name="North">North</string>
 
 </resources>

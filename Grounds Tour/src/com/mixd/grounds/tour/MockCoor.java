@@ -2,11 +2,9 @@ package com.mixd.grounds.tour;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.location.Location;
-import android.location.LocationManager;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -21,6 +19,7 @@ public class MockCoor extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mock_coor);
+		
 	}
 
 	public void sendMock(View view)
@@ -57,4 +56,13 @@ public class MockCoor extends Activity
 		}
 
 	}
+	
+	@Override
+	public void onResume(){
+		super.onResume();
+		Resources res = getResources();
+		System.out.println(res.getConfiguration().orientation);
+	}
+
+
 }

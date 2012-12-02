@@ -81,8 +81,8 @@ public class MockActivity extends Activity
 									stopNum = nextNum;
 									stopField.setText(String.valueOf(array
 											.get(3)));
-									stopLatField.setText(String.valueOf(stopLat));
-									stopLonField.setText(String.valueOf(stopLon));
+									stopLatField.setText(String.valueOf((double)stopLat/1000000));
+									stopLonField.setText(String.valueOf((double)stopLon/1000000));
 									int latTo = 0;
 									int lonTo = 0;
 									System.out.println(array.get(1));

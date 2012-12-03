@@ -358,6 +358,7 @@ public class MockActivity extends Activity
 			DecimalFormat df = new DecimalFormat("#.000000");
 			latitudeField.setText(df.format(latitude) + "");
 			longitudeField.setText(df.format(longitude) + "");
+			check();
 		}
 		check();
 	}

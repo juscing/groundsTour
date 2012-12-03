@@ -184,7 +184,7 @@ public class Helper
 			break;
 		}
 
-		double distance = latLngDist(lat, lon, stopLat, stopLon);
+        double distance = latLngDist(lat, lon, stopLat, stopLon);
 		
 
 		if (distance < 0.009144)

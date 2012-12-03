@@ -13,15 +13,15 @@ public class Choice extends Activity {
         setContentView(R.layout.activity_choice);
     }
 
-    public void useNormal(View view){
-    	Intent intent = new Intent(this, MainActivity.class);
-    	startActivity(intent);
-    	
+    public void useNormal(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+
     }
-    
-    public void useMock(View view){
-    	Intent intent = new Intent(this, MockCoor.class);
-    	startActivity(intent);
-    	
+
+    public void useMock(View view) {
+        Intent intent = new Intent(this, MockCoor.class);
+        startActivity(intent);
+
     }
 }

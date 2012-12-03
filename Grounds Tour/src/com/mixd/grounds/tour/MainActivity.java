@@ -250,7 +250,7 @@ public class MainActivity extends Activity implements LocationListener
 			
 
 			// Adding some hot/warm/cold stuff
-			double distToStop = Helper.latLngDist(location.getAltitude(),
+			double distToStop = Helper.latLngDist(location.getLatitude(),
 					location.getLongitude(), (Double) nextStop.get(1),
 					(Double) nextStop.get(2));
 

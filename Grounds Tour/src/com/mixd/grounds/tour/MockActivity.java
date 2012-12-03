@@ -37,6 +37,7 @@ public class MockActivity extends Activity
 	private GeoPoint finalDest;
 	private int stopNum;
 	private int firstNum;
+	public static boolean checker = false;
 
 	TimerTask task;
 	final Handler handler = new Handler();
@@ -46,14 +47,14 @@ public class MockActivity extends Activity
 
 	public void check()
 	{
-		task = new TimerTask()
+		/*task = new TimerTask()
 		{
 			public void run()
 			{
 				handler.post(new Runnable()
 				{
 					public void run()
-					{
+					{*/
 						ArrayList<Object> array = Helper.getMockStop(stopNum,
 								latitude, longitude,
 								(double) finalDest.getLatitudeE6() / 1000000,
@@ -68,7 +69,25 @@ public class MockActivity extends Activity
 				        Matrix arrowMatrix = new Matrix();
 				        arrowMatrix.postRotate(bearingToStop, 37 / 2, 25);
 				        arrow.setImageMatrix(arrowMatrix);
-
+				        
+				        double distance = Helper.latLngDist(latitude, longitude, (double) finalDest.getLatitudeE6()/ 1000000, (double) finalDest.getLongitudeE6()/ 1000000);
+		                System.out.println(distance);
+		                
+				        if (distance < 0.018288)
+		                {
+		                    temp.setText("HOT");
+		                    temp.setTextColor(getResources().getColor(R.color.hot));
+		                }
+		                else if (distance < 0.03048)
+		                {
+		                    temp.setText("Warm");
+		                    temp.setTextColor(getResources().getColor(R.color.warm));
+		                }
+		                else
+		                {
+		                    temp.setText("Cold");
+		                    temp.setTextColor(getResources().getColor(R.color.blue));
+		                }
 						if (array != null)
 						{
 							int nextNum = 0;
@@ -96,20 +115,8 @@ public class MockActivity extends Activity
 											.get(3)));
 									stopLatField.setText(String.valueOf((double)stopLat/1000000));
 									stopLonField.setText(String.valueOf((double)stopLon/1000000));
-									int latTo = 0;
-									int lonTo = 0;
-									System.out.println(array.get(1));
-									if (array.get(1) instanceof Integer)
-									{
-										latTo = (Integer) array.get(1);
-
-									}
-									if (array.get(2) instanceof Integer)
-									{
-										lonTo = (Integer) array.get(2);
-									}
-
-									finalDest = new GeoPoint(latTo, lonTo);
+									
+									finalDest = new GeoPoint(stopLat, stopLon);
 
 									AlertDialog ad = new AlertDialog.Builder(
 											MockActivity.activity).create();
@@ -154,6 +161,7 @@ public class MockActivity extends Activity
 								}
 							}
 						}
+						/*
 					}
 				});
 			}
@@ -163,7 +171,7 @@ public class MockActivity extends Activity
 		timer = new Timer();
 
 		timer.schedule(task, 300, 1000);
-
+        */
 	}
 
 	@Override
@@ -254,7 +262,6 @@ public class MockActivity extends Activity
 						currentDest.getLongitudeE6());
 				stopNum = i;
 				stopField.setText(stopName);
-
 			}
 			else
 			{
@@ -271,22 +278,6 @@ public class MockActivity extends Activity
 							currentDest.getLongitudeE6());
 					stopNum = i;
 					stopField.setText(stopName);
-			        
-			        if (distanceC < 0.018288)
-		            {
-		                temp.setText("HOT");
-		                temp.setTextColor(getResources().getColor(R.color.hot));
-		            }
-		            else if (distanceC < 0.03048)
-		            {
-		                temp.setText("Warm");
-		                temp.setTextColor(getResources().getColor(R.color.warm));
-		            }
-		            else
-		            {
-		                temp.setText("Cold");
-		                temp.setTextColor(getResources().getColor(R.color.blue));
-		            }
 				}
 			}
 		}
@@ -325,7 +316,7 @@ public class MockActivity extends Activity
 					{
 						finish();
 						activity = null;
-						timer.cancel();
+						//timer.cancel();
 						NextCoor.checker = false;
 						
 					}
@@ -355,8 +346,8 @@ public class MockActivity extends Activity
 	{
 		super.onResume();
 
-		check();
-		if (NextCoor.checker)
+		
+		if (checker)
 		{
 			double lat = NextCoor.latitude;
 			double lon = NextCoor.longitude;
@@ -367,13 +358,12 @@ public class MockActivity extends Activity
 			latitudeField.setText(df.format(latitude) + "");
 			longitudeField.setText(df.format(longitude) + "");
 		}
-
+		check();
 	}
 
 	public void onPause()
 	{
-		timer.cancel();
-		super.onResume();
+		super.onPause();
 	}
 	
 	public void goToHistory(View view){

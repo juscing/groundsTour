@@ -23,7 +23,7 @@ public class NextCoor extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_next_coor);
-		checker = true;
+		MockActivity.checker = true;
 		
 		editText3 = (EditText) findViewById(R.id.editText3);
 		editText4 = (EditText) findViewById(R.id.editText4);

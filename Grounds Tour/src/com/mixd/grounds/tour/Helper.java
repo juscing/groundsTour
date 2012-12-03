@@ -144,7 +144,7 @@ public class Helper
 			intArray = res.getIntArray(R.array.Chemistry);
 			latTo = intArray[0];
 			lonTo = intArray[1];
-			nameTo = "Chemistry Building";
+			nameTo = "Chem Bldg";
 			break;
 		case 3:
 			intArray = res.getIntArray(R.array.OHill);
@@ -156,7 +156,7 @@ public class Helper
 			intArray = res.getIntArray(R.array.AFC_Clock);
 			latTo = intArray[0];
 			lonTo = intArray[1];
-			nameTo = "AFC Clock Tower";
+			nameTo = "AFC Clock";
 			break;
 		case 5:
 			intArray = res.getIntArray(R.array.Rice_Hall);
@@ -174,7 +174,7 @@ public class Helper
 			intArray = res.getIntArray(R.array.Homer);
 			latTo = intArray[0];
 			lonTo = intArray[1];
-			nameTo = "Homer Statue";
+			nameTo = "Homer";
 			break;
 		case 8:
 			intArray = res.getIntArray(R.array.Chapel);

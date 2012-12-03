@@ -109,7 +109,7 @@ public class MainActivity extends Activity implements LocationListener
 				case 2:
 					array = res.getIntArray(R.array.Chemistry);
 					currentDest = new GeoPoint(array[0], array[1]);
-					stopName = "Chemistry Building";
+					stopName = "Chem Bldg";
 					break;
 				case 3:
 					array = res.getIntArray(R.array.OHill);
@@ -119,7 +119,7 @@ public class MainActivity extends Activity implements LocationListener
 				case 4:
 					array = res.getIntArray(R.array.AFC_Clock);
 					currentDest = new GeoPoint(array[0], array[1]);
-					stopName = "AFC Clock Tower";
+					stopName = "AFC Clock";
 					break;
 				case 5:
 					array = res.getIntArray(R.array.Rice_Hall);
@@ -134,7 +134,7 @@ public class MainActivity extends Activity implements LocationListener
 				case 7:
 					array = res.getIntArray(R.array.Homer);
 					currentDest = new GeoPoint(array[0], array[1]);
-					stopName = "Homer Statue";
+					stopName = "Homer";
 					break;
 				case 8:
 					array = res.getIntArray(R.array.Chapel);

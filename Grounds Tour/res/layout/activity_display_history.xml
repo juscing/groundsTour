@@ -3,23 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black" >
-
-    <ScrollView
+	
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+        
+         <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/uva_rotunda" />
+         
+         
+         <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
         android:scrollbars="vertical" >
-
         <TextView
-            android:id="@+id/textView16"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:text="@string/hello_world"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/white"
-            tools:context=".DisplayHistory" />
+             android:id="@+id/textView16"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent"
+             android:layout_weight="1.0"
+             android:text="@string/hello_world"
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:textColor="@color/white"
+             tools:context=".DisplayHistory" />
     </ScrollView>
+
+         
+
+    </LinearLayout>
+
+    
 
 </LinearLayout>

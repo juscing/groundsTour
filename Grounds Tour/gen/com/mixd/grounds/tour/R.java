@@ -31,12 +31,22 @@ public final class R {
         public static final int white=0x7f040002;
     }
     public static final class drawable {
-        public static final int androidmarker=0x7f020000;
-        public static final int arrow=0x7f020001;
-        public static final int darkblue=0x7f020002;
-        public static final int ic_action_search=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int uva_rotunda=0x7f020005;
+        public static final int afc_clocktower=0x7f020000;
+        public static final int androidmarker=0x7f020001;
+        public static final int arrow=0x7f020002;
+        public static final int chem_bldg=0x7f020003;
+        public static final int clark_hall=0x7f020004;
+        public static final int congrats1=0x7f020005;
+        public static final int darkblue=0x7f020006;
+        public static final int homer_statue=0x7f020007;
+        public static final int ic_action_search=0x7f020008;
+        public static final int ic_launcher=0x7f020009;
+        public static final int jefferson_statue=0x7f02000a;
+        public static final int nau_hall=0x7f02000b;
+        public static final int ohill=0x7f02000c;
+        public static final int rice_hall=0x7f02000d;
+        public static final int uva_chapel=0x7f02000e;
+        public static final int uva_rotunda=0x7f02000f;
     }
     public static final class id {
         public static final int button1=0x7f090000;
@@ -46,23 +56,23 @@ public final class R {
         public static final int editText2=0x7f090017;
         public static final int editText3=0x7f090018;
         public static final int editText4=0x7f090019;
-        public static final int imageView1=0x7f09000d;
+        public static final int imageView1=0x7f090002;
         public static final int mapview=0x7f090013;
         public static final int menu_settings=0x7f09001a;
         public static final int roadmap_setting=0x7f09001c;
         public static final int satellite_setting=0x7f09001b;
-        public static final int scrollView1=0x7f090002;
+        public static final int scrollView1=0x7f090003;
         public static final int textView1=0x7f090015;
-        public static final int textView10=0x7f090007;
-        public static final int textView11=0x7f090009;
-        public static final int textView12=0x7f09000a;
-        public static final int textView13=0x7f09000b;
-        public static final int textView14=0x7f090008;
-        public static final int textView15=0x7f09000c;
-        public static final int textView16=0x7f090003;
-        public static final int textView2=0x7f090004;
-        public static final int textView3=0x7f090005;
-        public static final int textView4=0x7f090006;
+        public static final int textView10=0x7f090008;
+        public static final int textView11=0x7f09000a;
+        public static final int textView12=0x7f09000b;
+        public static final int textView13=0x7f09000c;
+        public static final int textView14=0x7f090009;
+        public static final int textView15=0x7f09000d;
+        public static final int textView16=0x7f090004;
+        public static final int textView2=0x7f090005;
+        public static final int textView3=0x7f090006;
+        public static final int textView4=0x7f090007;
         public static final int textView5=0x7f090011;
         public static final int textView6=0x7f090012;
         public static final int textView7=0x7f09000e;

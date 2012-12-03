@@ -69,7 +69,7 @@ public class MockActivity extends Activity
 				        arrowMatrix.postRotate(bearingToStop, 37 / 2, 25);
 				        arrow.setImageMatrix(arrowMatrix);
 				        
-				        double distance = Helper.latLngDist(latitude, longitude, finalDest.getLatitudeE6()/ 1000000, finalDest.getLongitudeE6()/ 1000000);
+				        double distance = Helper.latLngDist(latitude, longitude,(double) finalDest.getLatitudeE6()/ 1000000,(double) finalDest.getLongitudeE6()/ 1000000);
 		                System.out.println(distance);
 				        if (distance < 0.018288)
 		                {
